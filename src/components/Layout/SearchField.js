@@ -3,7 +3,7 @@ import classes from "./SearchField.module.css";
 
 const SearchField = () => {
   return (
-    <div>
+    <div className={classes.search}>
       <input type="text" placeholder="Search" className={classes.input} />
     </div>
   );

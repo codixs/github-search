@@ -39,3 +39,14 @@
   /* Grayscale/ Light Gray 3 */
   color: #d0d7de;
 }
+
+.search {
+  width: 100%;
+  text-align: right;
+}
+
+@media (max-width: 480px) {
+  .input {
+    max-width: min-content;
+  }
+}
