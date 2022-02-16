@@ -20,6 +20,7 @@
   /* height: 37px; */
   width: 242px;
   padding: 6px 0 7px 17px;
+  flex-shrink: 2;
 
   /* Grayscale/ Light Gray 3 */
   color: #d0d7de;
@@ -40,13 +41,10 @@
   color: #d0d7de;
 }
 
-.search {
-  width: 100%;
-  text-align: right;
-}
-
 @media (max-width: 480px) {
   .input {
-    max-width: min-content;
+    width: 100%;
+    max-width: 242px;
+    flex-shrink: 2;
   }
 }

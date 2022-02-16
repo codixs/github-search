@@ -7,7 +7,6 @@ const Header = () => {
   return (
     <header className={classes.header}>
       <Logo />
-
       <SearchField />
     </header>
   );
