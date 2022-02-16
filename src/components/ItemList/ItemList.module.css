@@ -11,6 +11,11 @@
   color: #000000;
 }
 
+.listing {
+  width: auto;
+  margin: 0 139px 58px 143px;
+}
+
 @media (max-width: 480px) {
   .total {
     margin: 34px auto 20px 17px;
