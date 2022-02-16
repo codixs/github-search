@@ -82,3 +82,15 @@
   /* Grayscale/Dark Gray 2 */
   color: #6f7781;
 }
+
+@media (max-width: 480px) {
+  .container {
+    padding: 22px 0 16px 0;
+  }
+  .name {
+    margin-bottom: 2px;
+  }
+  .login {
+    margin-bottom: 20px;
+  }
+}

@@ -7,7 +7,7 @@ let query = `michal`;
 const baseUrl = `https://api.github.com`;
 const userUrl = `/search/users?q=${query}`;
 const repoUrl = `/search/repositories?q=${query}`;
-const access_token = "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";
+const access_token = "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";
 
 const ItemList = () => {
   const [users, setUsers] = useState([]);
@@ -28,7 +28,11 @@ const ItemList = () => {
 
   async function getRepos(base, url) {
     try {
-      const res = await axios.get(`${base}${url}`);
+      const res = await axios.get(`${base}${url}`, {
+        headers: {
+          Authorization: `token ${access_token}`,
+        },
+      });
       setRepos(res.data);
     } catch (err) {
       console.log("error", err);
@@ -46,8 +50,8 @@ const ItemList = () => {
 
   return (
     <>
-      <div>users: {users.total_count}</div>
-      <div>repos: {repos.total_count}</div>
+      {/* <div>users: {users.total_count}</div>
+      <div>repos: {repos.total_count}</div> */}
       <div className={classes.total}>
         {total === 0 ? "no" : total} {total <= 1 ? "result" : "results"}
       </div>
