@@ -1,0 +1,50 @@
+@font-face {
+  font-family: "Segoe UI";
+  src: url("//db.onlinewebfonts.com/t/623c7118249e082fe87a78e08506cb4b.eot");
+  src: url("//db.onlinewebfonts.com/t/623c7118249e082fe87a78e08506cb4b.eot?#iefix")
+      format("embedded-opentype"),
+    url("//db.onlinewebfonts.com/t/623c7118249e082fe87a78e08506cb4b.woff2")
+      format("woff2"),
+    url("//db.onlinewebfonts.com/t/623c7118249e082fe87a78e08506cb4b.woff")
+      format("woff"),
+    url("//db.onlinewebfonts.com/t/623c7118249e082fe87a78e08506cb4b.ttf")
+      format("truetype"),
+    url("//db.onlinewebfonts.com/t/623c7118249e082fe87a78e08506cb4b.svg#Segoe UI")
+      format("svg");
+}
+.input {
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  /* height: 37px; */
+  width: 242px;
+  padding: 6px 0 7px 17px;
+  flex-shrink: 2;
+
+  /* Grayscale/ Light Gray 3 */
+  color: #d0d7de;
+  font-family: Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+
+  /* Grayscale/ Light Gray 3 */
+  border: 1px solid #d0d7de;
+  border-radius: 5px;
+  background: #24292f;
+}
+
+.input::placeholder {
+  /* Grayscale/ Light Gray 3 */
+  color: #d0d7de;
+}
+
+@media (max-width: 480px) {
+  .input {
+    width: 100%;
+    max-width: 242px;
+    flex-shrink: 2;
+  }
+}
