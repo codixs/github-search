@@ -5,7 +5,7 @@ import classes from "./UserItem.module.css";
 const UserItem = (props) => {
   const [userDetails, setUserDetails] = useState([]);
   const baseUrl = `https://api.github.com`;
-  const access_token = "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";
+  const access_token = "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";
 
   async function getUserDetails(login) {
     try {

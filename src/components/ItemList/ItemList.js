@@ -4,13 +4,12 @@ import classes from "./ItemList.module.css";
 import UserItem from "../UserItem/UserItem";
 import RepoItem from "../RepoItem/RepoItem";
 
-let query = ``;
 const baseUrl = `https://api.github.com`;
 const userUrl = `/search/users?q=`;
 const repoUrl = `/search/repositories?q=`;
-const access_token = "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";
+const access_token = "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";
 
-const ItemList = () => {
+const ItemList = (props) => {
   const [users, setUsers] = useState([]);
   const [repos, setRepos] = useState([]);
 
@@ -41,10 +40,14 @@ const ItemList = () => {
   }
 
   useEffect(() => {
-    query = "google";
-    getUsers(baseUrl, userUrl, query);
-    getRepos(baseUrl, repoUrl, query);
+    getUsers(baseUrl, userUrl, props.query);
+    getRepos(baseUrl, repoUrl, props.query);
   }, []);
+
+  useEffect(() => {
+    getUsers(baseUrl, userUrl, props.query);
+    getRepos(baseUrl, repoUrl, props.query);
+  }, [props.query]);
 
   let total = users.total_count + repos.total_count;
 
@@ -52,7 +55,6 @@ const ItemList = () => {
   let repoList = Object.values({ ...repos.items });
 
   let result = [...userList, ...repoList];
-  console.log(result);
   result = result.sort(function (a, b) {
     return parseFloat(a.id) - parseFloat(b.id);
   });
@@ -63,10 +65,12 @@ const ItemList = () => {
         {total === 0 ? "no" : total} {total <= 1 ? "result" : "results"}
       </div>
       <div className={classes.listing}>
-        {result.map((item) => {
+        {result.map((item, index) => {
+          // reduce the size of search results
+          if (index > 9) {
+            return;
+          }
           if (item.login) {
-            console.log(`wartość type to: ${item.type}.`);
-
             return (
               <UserItem
                 key={item.id}

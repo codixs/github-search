@@ -77,3 +77,12 @@
   vertical-align: middle;
   margin-right: 3.64px;
 }
+
+@media (max-width: 480px) {
+  .container {
+    padding: 22px 0 16px 0;
+  }
+  .name {
+    margin-bottom: 2px;
+  }
+}
