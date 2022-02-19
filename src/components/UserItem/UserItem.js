@@ -5,7 +5,7 @@ import classes from "./UserItem.module.css";
 const UserItem = (props) => {
   const [userDetails, setUserDetails] = useState([]);
   const baseUrl = `https://api.github.com`;
-  const access_token = "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";
+  const access_token = "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";
 
   async function getUserDetails(login) {
     try {
@@ -15,7 +15,6 @@ const UserItem = (props) => {
         },
       });
       setUserDetails(res.data);
-      console.log("details", res.data);
     } catch (err) {
       console.log("error", err);
     }
@@ -23,7 +22,6 @@ const UserItem = (props) => {
   useEffect(() => {
     getUserDetails(props.login);
   }, []);
-  console.log("details", userDetails);
   return (
     <div key={props.id} className={classes.container}>
       <img src={props.avatar} alt={userDetails.name} className={classes.img} />
