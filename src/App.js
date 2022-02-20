@@ -1,10 +1,12 @@
 import "./App.css";
 import Header from "./components/Layout/Header";
 import ItemList from "./components/ItemList/ItemList";
+import UserDetails from "./components/UserDetails/UserDetails";
 import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App(props) {
-  const [query, setQuery] = useState("michal");
+  const [query, setQuery] = useState("ELPASSION");
   const queryHandler = (query) => {
     // store query
     console.log(`query: ${query}`);
@@ -12,10 +14,17 @@ function App(props) {
   };
 
   return (
-    <div className="App">
-      <Header onQuery={queryHandler} />
-      <ItemList query={query} />
-    </div>
+    <Router>
+      <>
+        <div className="App">
+          <Header onQuery={queryHandler} />
+          <Routes>
+            <Route path="/" element={<ItemList query={query} />} />
+            <Route path="/user/:login" element={<UserDetails />} />
+          </Routes>
+        </div>
+      </>
+    </Router>
   );
 }
 

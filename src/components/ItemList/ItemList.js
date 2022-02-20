@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import toastr from "toastr";
+
 import axios from "axios";
 import classes from "./ItemList.module.css";
 import UserItem from "../UserItem/UserItem";
@@ -7,7 +9,7 @@ import RepoItem from "../RepoItem/RepoItem";
 const baseUrl = `https://api.github.com`;
 const userUrl = `/search/users?q=`;
 const repoUrl = `/search/repositories?q=`;
-const access_token = "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";
+const access_token = "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";
 
 const ItemList = (props) => {
   const [users, setUsers] = useState([]);
@@ -23,6 +25,7 @@ const ItemList = (props) => {
       setUsers(res.data);
     } catch (err) {
       console.log("error", err);
+      toastr.error(`Retrieving data failed`, `${err} error`);
     }
   }
 
@@ -36,6 +39,7 @@ const ItemList = (props) => {
       setRepos(res.data);
     } catch (err) {
       console.log("error", err);
+      toastr.error(`Retrieving data failed`, `${err} error`);
     }
   }
 
@@ -60,7 +64,7 @@ const ItemList = (props) => {
   });
 
   return (
-    <>
+    <React.Fragment>
       <div className={classes.total}>
         {total === 0 ? "no" : total} {total <= 1 ? "result" : "results"}
       </div>
@@ -99,7 +103,7 @@ const ItemList = (props) => {
           }
         })}
       </div>
-    </>
+    </React.Fragment>
   );
 };
 

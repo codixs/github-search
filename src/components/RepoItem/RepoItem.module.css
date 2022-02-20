@@ -78,7 +78,11 @@
   margin-right: 3.64px;
 }
 
-@media (max-width: 480px) {
+.link {
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
   .container {
     padding: 22px 0 16px 0;
   }

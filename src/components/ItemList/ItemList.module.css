@@ -16,7 +16,7 @@
   margin: 0 139px 58px 143px;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .total {
     margin: 34px auto 20px 17px;
   }

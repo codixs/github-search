@@ -27,7 +27,7 @@
   color: #d0d7de;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .input {
     width: 100%;
     max-width: 242px;
