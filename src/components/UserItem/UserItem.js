@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import classes from "./UserItem.module.css";
 import { Link } from "react-router-dom";
+const { REACT_APP_GITHUB_TOKEN } = process.env;
 
 const UserItem = (props) => {
   const [userDetails, setUserDetails] = useState([]);
   const baseUrl = `https://api.github.com`;
-  const access_token = "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";
 
   async function getUserDetails(login) {
     try {
       const res = await axios.get(`${baseUrl}/users/${login}`, {
         headers: {
-          Authorization: `token ${access_token}`,
+          authorization: `token ${REACT_APP_GITHUB_TOKEN}`,
         },
       });
       setUserDetails(res.data);

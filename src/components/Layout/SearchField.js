@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import classes from "./SearchField.module.css";
 
 const SearchField = (props) => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("ELPASSION");
 
   // delay in passing the query to HOC
   useEffect(() => {

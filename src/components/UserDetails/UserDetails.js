@@ -8,13 +8,13 @@ const UserDetails = () => {
   let { login } = useParams();
   const [userDetails, setUserDetails] = useState([]);
   const baseUrl = `https://api.github.com`;
-  const access_token = "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";
+  const { REACT_APP_GITHUB_TOKEN } = process.env;
 
   async function getUserDetails(login) {
     try {
       const res = await axios.get(`${baseUrl}/users/${login}`, {
         headers: {
-          Authorization: `token ${access_token}`,
+          Authorization: `token ${REACT_APP_GITHUB_TOKEN}`,
         },
       });
       setUserDetails(res.data);

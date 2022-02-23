@@ -9,36 +9,34 @@ import RepoItem from "../RepoItem/RepoItem";
 const baseUrl = `https://api.github.com`;
 const userUrl = `/search/users?q=`;
 const repoUrl = `/search/repositories?q=`;
-const access_token = "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";
+const { REACT_APP_GITHUB_TOKEN } = process.env;
 
 const ItemList = (props) => {
   const [users, setUsers] = useState([]);
   const [repos, setRepos] = useState([]);
-
   async function getUsers(base, url, query) {
     try {
       const res = await axios.get(`${base}${url}${query}`, {
         headers: {
-          Authorization: `token ${access_token}`,
+          authorization: `token ${REACT_APP_GITHUB_TOKEN}`,
         },
       });
       setUsers(res.data);
     } catch (err) {
-      console.log("error", err);
+      console.log(`Retrieving data failed`, `${err} error`);
       toastr.error(`Retrieving data failed`, `${err} error`);
     }
   }
-
   async function getRepos(base, url, query) {
     try {
       const res = await axios.get(`${base}${url}${query}`, {
         headers: {
-          Authorization: `token ${access_token}`,
+          authorization: `token ${REACT_APP_GITHUB_TOKEN}`,
         },
       });
       setRepos(res.data);
     } catch (err) {
-      console.log("error", err);
+      console.log(`Retrieving data failed`, `${err} error`);
       toastr.error(`Retrieving data failed`, `${err} error`);
     }
   }
@@ -49,8 +47,12 @@ const ItemList = (props) => {
   }, []);
 
   useEffect(() => {
-    getUsers(baseUrl, userUrl, props.query);
-    getRepos(baseUrl, repoUrl, props.query);
+    let query = props.query;
+    if (query === "") {
+      query = "elpassion";
+    }
+    getUsers(baseUrl, userUrl, query);
+    getRepos(baseUrl, repoUrl, query);
   }, [props.query]);
 
   let total = users.total_count + repos.total_count;
