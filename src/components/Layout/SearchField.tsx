@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import classes from "./SearchField.module.css";
 
-const SearchField = (props) => {
+const SearchField: React.FC<{ onChangeQuery: (query: string) => void }> = (
+  props
+) => {
   const [searchTerm, setSearchTerm] = useState("ELPASSION");
 
   // delay in passing the query to HOC
@@ -14,7 +16,7 @@ const SearchField = (props) => {
   }, [searchTerm]);
 
   //pass the query to HOC
-  const onChangeHandler = (query) => {
+  const onChangeHandler = (query: string) => {
     props.onChangeQuery(query);
   };
 
@@ -23,7 +25,7 @@ const SearchField = (props) => {
       type="text"
       placeholder="Search"
       className={classes.input}
-      value={props.query}
+      // value={props.query}
       onChange={(e) => setSearchTerm(e.target.value)}
     />
   );

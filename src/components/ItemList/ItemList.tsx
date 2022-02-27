@@ -11,10 +11,10 @@ const userUrl = `/search/users?q=`;
 const repoUrl = `/search/repositories?q=`;
 const { REACT_APP_GITHUB_TOKEN } = process.env;
 
-const ItemList = (props) => {
-  const [users, setUsers] = useState([]);
-  const [repos, setRepos] = useState([]);
-  async function getUsers(base, url, query) {
+const ItemList: React.FC<{ query: string }> = (props) => {
+  const [users, setUsers] = useState<[]>([]);
+  const [repos, setRepos] = useState<[]>([]);
+  async function getUsers(base: string, url: string, query: string) {
     try {
       const res = await axios.get(`${base}${url}${query}`, {
         headers: {
@@ -27,7 +27,7 @@ const ItemList = (props) => {
       toastr.error(`Retrieving data failed`, `${err} error`);
     }
   }
-  async function getRepos(base, url, query) {
+  async function getRepos(base: string, url: string, query: string) {
     try {
       const res = await axios.get(`${base}${url}${query}`, {
         headers: {
@@ -55,10 +55,10 @@ const ItemList = (props) => {
     getRepos(baseUrl, repoUrl, query);
   }, [props.query]);
 
-  let total = users.total_count + repos.total_count;
+  let total: number = users.total_count + repos.total_count;
 
-  let userList = Object.values({ ...users.items });
-  let repoList = Object.values({ ...repos.items });
+  let userList: [] = Object.values({ ...users.items });
+  let repoList: [] = Object.values({ ...repos.items });
 
   let result = [...userList, ...repoList];
   result = result.sort(function (a, b) {
@@ -66,7 +66,7 @@ const ItemList = (props) => {
   });
 
   return (
-    <React.Fragment>
+    <div>
       <div className={classes.total}>
         {total === 0 ? "no" : total} {total <= 1 ? "result" : "results"}
       </div>
@@ -105,7 +105,7 @@ const ItemList = (props) => {
           }
         })}
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 

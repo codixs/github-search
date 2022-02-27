@@ -5,9 +5,9 @@ import UserDetails from "./components/UserDetails/UserDetails";
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-function App(props) {
-  const [query, setQuery] = useState("ELPASSION");
-  const queryHandler = (query) => {
+const App: React.FC = () => {
+  const [query, setQuery] = useState<string>("ELPASSION");
+  const queryHandler = (query: string) => {
     // store query
     console.log(`query: ${query}`);
     setQuery(query);
@@ -26,6 +26,6 @@ function App(props) {
       </>
     </Router>
   );
-}
+};
 
 export default App;
