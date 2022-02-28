@@ -4,13 +4,13 @@ import axios from "axios";
 import classes from "./UserDetails.module.css";
 import followIMG from "../../assets/followers.png";
 
-const UserDetails = () => {
+const UserDetails: React.FC = () => {
   let { login } = useParams();
   const [userDetails, setUserDetails] = useState([]);
   const baseUrl = `https://api.github.com`;
   const { REACT_APP_GITHUB_TOKEN } = process.env;
 
-  async function getUserDetails(login) {
+  async function getUserDetails(login: string) {
     try {
       const res = await axios.get(`${baseUrl}/users/${login}`, {
         headers: {

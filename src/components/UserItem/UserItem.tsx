@@ -4,11 +4,13 @@ import classes from "./UserItem.module.css";
 import { Link } from "react-router-dom";
 const { REACT_APP_GITHUB_TOKEN } = process.env;
 
-const UserItem = (props) => {
+const UserItem: React.FC<{ id: number; login: string; avatar: string }> = (
+  props
+) => {
   const [userDetails, setUserDetails] = useState([]);
   const baseUrl = `https://api.github.com`;
 
-  async function getUserDetails(login) {
+  async function getUserDetails(login: string) {
     try {
       const res = await axios.get(`${baseUrl}/users/${login}`, {
         headers: {
@@ -24,6 +26,7 @@ const UserItem = (props) => {
     getUserDetails(props.login);
   }, []);
   let detailUrl = `/user/${props.login}`;
+
   return (
     <div key={props.id} className={classes.container}>
       <img src={props.avatar} alt={userDetails.name} className={classes.img} />

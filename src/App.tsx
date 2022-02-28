@@ -18,10 +18,10 @@ const App: React.FC = () => {
       <>
         <div className="App">
           <Header onQuery={queryHandler} />
-          <Routes>
+          {/* <Routes>
             <Route path="/" element={<ItemList query={query} />} />
             <Route path="/user/:login" element={<UserDetails />} />
-          </Routes>
+          </Routes> */}
         </div>
       </>
     </Router>

@@ -1,11 +1,18 @@
 import React from "react";
-import dateFormat from "dateformat";
+// import dateFormat from "dateformat";
 import { Link } from "react-router-dom";
 
 import classes from "./RepoItem.module.css";
 import repoIMG from "../../assets/repo.png";
 import starIMG from "../../assets/star.png";
-const RepoItem = (props) => {
+const RepoItem: React.FC<{
+  id: number;
+  name: string;
+  description: string;
+  stars: number;
+  language: string;
+  license: string;
+}> = (props) => {
   return (
     <div key={props.id} className={classes.container}>
       <img src={repoIMG} className={classes.img} alt={props.name} />
@@ -26,9 +33,9 @@ const RepoItem = (props) => {
         ) : (
           ""
         )}
-        <div className={classes.last_parm}>
+        {/* <div className={classes.last_parm}>
           Updated on {dateFormat(props.updatedDate, "dd mmm yyyy")}
-        </div>
+        </div> */}
       </div>
     </div>
   );

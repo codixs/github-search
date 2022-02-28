@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import toastr from "toastr";
+// import toastr from "toastr";
 
 import axios from "axios";
 import classes from "./ItemList.module.css";
 import UserItem from "../UserItem/UserItem";
 import RepoItem from "../RepoItem/RepoItem";
+import RepoItemModel from "../../models/repoItem";
 
 const baseUrl = `https://api.github.com`;
 const userUrl = `/search/users?q=`;
@@ -14,6 +15,7 @@ const { REACT_APP_GITHUB_TOKEN } = process.env;
 const ItemList: React.FC<{ query: string }> = (props) => {
   const [users, setUsers] = useState<[]>([]);
   const [repos, setRepos] = useState<[]>([]);
+
   async function getUsers(base: string, url: string, query: string) {
     try {
       const res = await axios.get(`${base}${url}${query}`, {
@@ -24,7 +26,7 @@ const ItemList: React.FC<{ query: string }> = (props) => {
       setUsers(res.data);
     } catch (err) {
       console.log(`Retrieving data failed`, `${err} error`);
-      toastr.error(`Retrieving data failed`, `${err} error`);
+      // toastr.error(`Retrieving data failed`, `${err} error`);
     }
   }
   async function getRepos(base: string, url: string, query: string) {
@@ -34,10 +36,11 @@ const ItemList: React.FC<{ query: string }> = (props) => {
           authorization: `token ${REACT_APP_GITHUB_TOKEN}`,
         },
       });
-      setRepos(res.data);
+
+      setRepos(new RepoItemModel());
     } catch (err) {
       console.log(`Retrieving data failed`, `${err} error`);
-      toastr.error(`Retrieving data failed`, `${err} error`);
+      // toastr.error(`Retrieving data failed`, `${err} error`);
     }
   }
 
