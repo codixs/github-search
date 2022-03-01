@@ -77,7 +77,7 @@ const ItemList: React.FC<{
 
     let query: string = props.q;
     if (query === "") {
-      query = "elpassion";
+      query = "mmyczkowski19/github-search";
     }
     getUsers(baseUrl, userUrl, query);
     getRepos(baseUrl, repoUrl, query);
