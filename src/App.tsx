@@ -5,11 +5,11 @@ import UserDetails from "./components/UserDetails/UserDetails";
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-function App(props) {
-  const [query, setQuery] = useState("ELPASSION");
-  const queryHandler = (query) => {
+const App: React.FC = () => {
+  const [query, setQuery] = useState<string>("");
+  const queryHandler = (query: string) => {
     // store query
-    console.log(`query: ${query}`);
+    console.log(`query in app: ${query}`);
     setQuery(query);
   };
 
@@ -19,13 +19,13 @@ function App(props) {
         <div className="App">
           <Header onQuery={queryHandler} />
           <Routes>
-            <Route path="/" element={<ItemList query={query} />} />
+            <Route path="/" element={<ItemList q={query} />} />
             <Route path="/user/:login" element={<UserDetails />} />
           </Routes>
         </div>
       </>
     </Router>
   );
-}
+};
 
 export default App;
