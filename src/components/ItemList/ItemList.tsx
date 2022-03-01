@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
-// import toastr from "toastr";
 
 import axios from "axios";
 import classes from "./ItemList.module.css";
 import UserItem from "../UserItem/UserItem";
 import RepoItem from "../RepoItem/RepoItem";
 import RepoItemModel from "../../models/repoItem";
+import UserItemModel from "../../models/userItem";
 
-const baseUrl = `https://api.github.com`;
-const userUrl = `/search/users?q=`;
-const repoUrl = `/search/repositories?q=`;
+const baseUrl: string = `https://api.github.com`;
+const userUrl: string = `/search/users?q=`;
+const repoUrl: string = `/search/repositories?q=`;
 const { REACT_APP_GITHUB_TOKEN } = process.env;
-
-const ItemList: React.FC<{ query: string }> = (props) => {
-  const [users, setUsers] = useState<[]>([]);
-  const [repos, setRepos] = useState<[]>([]);
+const ItemList: React.FC<{
+  q: string;
+}> = (props) => {
+  const [users, setUsers] = useState<UserItemModel[]>([]);
+  const [repos, setRepos] = useState<RepoItemModel[]>([]);
+  const [total, setTotal] = useState<number>(0);
 
   async function getUsers(base: string, url: string, query: string) {
     try {
@@ -23,10 +25,18 @@ const ItemList: React.FC<{ query: string }> = (props) => {
           authorization: `token ${REACT_APP_GITHUB_TOKEN}`,
         },
       });
-      setUsers(res.data);
+      setTotal((prevState) => {
+        return prevState + res.data.total_count;
+      });
+      console.log(`USER NO: ${res.data.total_count}`);
+      res.data["items"].map((item: any) => {
+        const newUser = new UserItemModel(item.id, item.avatar_url, item.login);
+        setUsers((prevState) => {
+          return prevState.concat(newUser);
+        });
+      });
     } catch (err) {
       console.log(`Retrieving data failed`, `${err} error`);
-      // toastr.error(`Retrieving data failed`, `${err} error`);
     }
   }
   async function getRepos(base: string, url: string, query: string) {
@@ -36,35 +46,45 @@ const ItemList: React.FC<{ query: string }> = (props) => {
           authorization: `token ${REACT_APP_GITHUB_TOKEN}`,
         },
       });
+      setTotal((prevState) => {
+        return prevState + res.data.total_count;
+      });
+      console.log(`REPO NO: ${res.data.total_count}`);
 
-      setRepos(new RepoItemModel());
+      res.data["items"].map((item: any) => {
+        const newRepo = new RepoItemModel(
+          item.id,
+          item.full_name,
+          item.description,
+          item.stargazers_count,
+          item.language,
+          // item.license || [];
+          item.updated_at
+        );
+        setRepos((prevState) => {
+          return prevState.concat(newRepo);
+        });
+      });
     } catch (err) {
       console.log(`Retrieving data failed`, `${err} error`);
-      // toastr.error(`Retrieving data failed`, `${err} error`);
     }
   }
 
   useEffect(() => {
-    getUsers(baseUrl, userUrl, props.query);
-    getRepos(baseUrl, repoUrl, props.query);
-  }, []);
+    setRepos([]);
+    setUsers([]);
+    setTotal(0);
 
-  useEffect(() => {
-    let query = props.query;
+    let query: string = props.q;
     if (query === "") {
       query = "elpassion";
     }
     getUsers(baseUrl, userUrl, query);
     getRepos(baseUrl, repoUrl, query);
-  }, [props.query]);
+  }, [props.q]);
 
-  let total: number = users.total_count + repos.total_count;
-
-  let userList: [] = Object.values({ ...users.items });
-  let repoList: [] = Object.values({ ...repos.items });
-
-  let result = [...userList, ...repoList];
-  result = result.sort(function (a, b) {
+  let result: any[] = [...repos, ...users];
+  result = result.sort((a: any, b: any) => {
     return parseFloat(a.id) - parseFloat(b.id);
   });
 
@@ -82,27 +102,23 @@ const ItemList: React.FC<{ query: string }> = (props) => {
           if (item.login) {
             return (
               <UserItem
-                key={item.id}
+                key={item.id * index}
                 id={item.id}
-                avatar={item.avatar_url}
+                avatar={item.avatar}
                 login={item.login}
               />
             );
           } else {
-            let licenseName;
-            if (item.license) {
-              licenseName = item.license["name"];
-            }
             return (
               <RepoItem
-                key={item.id}
+                key={item.id * index}
                 id={item.id}
-                name={item.full_name}
+                name={item.name}
                 description={item.description}
-                stars={item.stargazers_count}
+                stars={item.stars}
                 language={item.language}
                 updatedDate={item.updated_at}
-                license={licenseName}
+                // license={licenseName}
               />
             );
           }
