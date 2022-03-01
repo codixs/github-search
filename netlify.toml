@@ -6,7 +6,3 @@
   publish = "build"
 
   
-
-# Set enviroment variable prompts for templates
-[template.environment]
-  REACT_APP_GITHUB_TOKEN = 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
