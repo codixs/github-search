@@ -1,1 +1,24 @@
 [build]
+  # This is the directory to change to before starting a build.
+  base    = "/"
+  # NOTE: This is where we will look for package.json/.nvmrc/etc, not root.
+  # This is the directory that you are publishing from (relative to root of your repo)
+  publish = "build"
+
+  # If skip_processing = true, all other settings are ignored
+  [build.processing]
+    skip_processing = false
+  [build.processing.css]
+    bundle = true
+    minify = false
+  [build.processing.js]
+    bundle = true
+    minify = false
+  [build.processing.html]
+    pretty_urls = true
+  [build.processing.images]
+    compress = true
+
+# Set enviroment variable prompts for templates
+[template.environment]
+  YOUR_ENV_KEYS_NEEDED = "Enter in the ENV key here"
