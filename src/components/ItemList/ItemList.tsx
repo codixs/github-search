@@ -117,7 +117,7 @@ const ItemList: React.FC<{
                 description={item.description}
                 stars={item.stars}
                 language={item.language}
-                updatedDate={item.updated_at}
+                updated_at={item.updated_at}
                 // license={licenseName}
               />
             );

@@ -28,7 +28,7 @@ const RepoItem: React.FC<RepoItemModel> = (props) => {
         ) : (
           ""
         )} */}
-        Updated on {dateFormat(props.updatedDate, "dd mmm yyyy")}
+        Updated on {dateFormat(props.updated_at, "dd mmm yyyy")}
       </div>
     </div>
   );

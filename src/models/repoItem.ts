@@ -1,12 +1,10 @@
-import dateFormat from "dateformat";
-
 class RepoItemModel {
   id: number;
   name: string;
   description: string;
   stars: number;
   language: string;
-  updatedDate: any;
+  updated_at: any;
   //   license: Array<T>;
   constructor(
     id: number,
@@ -14,7 +12,7 @@ class RepoItemModel {
     description: string,
     stars: number,
     language: string,
-    updatedDate: any
+    updated_at: any
 
     // license: Array<T>
   ) {
@@ -23,7 +21,7 @@ class RepoItemModel {
     this.description = description;
     this.stars = stars || 0;
     this.language = language || "";
-    this.updatedDate = updatedDate;
+    this.updated_at = updated_at;
 
     // this.license = license["name"];
   }
