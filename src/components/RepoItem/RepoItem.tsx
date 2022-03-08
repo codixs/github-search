@@ -12,7 +12,7 @@ const RepoItem: React.FC<RepoItemModel> = (props) => {
     <div key={props.id} className={classes.container}>
       <img src={repoIMG} className={classes.img} alt={props.name} />
       <Link to="" className={classes.link}>
-        <div className={classes.name}>{props.name}</div>{" "}
+        <div className={classes.name}>{props.name}</div>
       </Link>
       <div className={classes.description}>{props.description}</div>
       <div className={classes.last_row}>
@@ -23,11 +23,6 @@ const RepoItem: React.FC<RepoItemModel> = (props) => {
         ) : (
           ""
         )}
-        {/* {props.license ? (
-          <div className={classes.last_parm}>{props.license}</div>
-        ) : (
-          ""
-        )} */}
         Updated on {dateFormat(props.updated_at, "dd mmm yyyy")}
       </div>
     </div>

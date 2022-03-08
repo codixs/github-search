@@ -5,7 +5,6 @@ class RepoItemModel {
   stars: number;
   language: string;
   updated_at: any;
-  //   license: Array<T>;
   constructor(
     id: number,
     name: string,
@@ -13,8 +12,6 @@ class RepoItemModel {
     stars: number,
     language: string,
     updated_at: any
-
-    // license: Array<T>
   ) {
     this.id = id;
     this.name = name;

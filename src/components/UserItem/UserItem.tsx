@@ -46,7 +46,11 @@ const UserItem: React.FC<UserItemModel> = (props) => {
 
   return (
     <div key={props.id} className={classes.container}>
-      <img src={props.avatar} alt={userDetails.name} className={classes.img} />
+      <img
+        src={props.avatar_url}
+        alt={userDetails.name}
+        className={classes.img}
+      />
 
       <Link to={detailUrl} className={classes.link}>
         <div className={classes.name}>{userDetails.name}</div>

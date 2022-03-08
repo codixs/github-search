@@ -1,35 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
+
 import classes from "./SearchField.module.css";
+import { Context } from "../../store/query";
 
-const SearchField: React.FC<{
-  onChangeQuery: (q: string) => void;
-}> = (props) => {
-  const [searchTerm, setSearchTerm] = useState<string>("");
+const SearchField: React.FC = () => {
+  const { query, updateQuery, cleanTotal, updateResult } = useContext(Context);
 
-  // delay in passing the query to HOC
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      onChangeHandler(searchTerm);
-    }, 500);
+      cleanTotal();
+      updateResult(query);
+    }, 2000);
 
     return () => clearTimeout(delayDebounceFn);
-  }, [searchTerm]);
-
-  //pass the query to HOC
-  const onChangeHandler = (q: string) => {
-    props.onChangeQuery(q);
-  };
+  }, [query]);
 
   return (
     <input
       type="text"
       placeholder="Search"
       className={classes.input}
-      value={searchTerm}
+      value={query}
       onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchTerm(e.target.value);
-        console.log(`event: ${e.target.value}`);
-        console.log(`searchTerm: ${searchTerm}`);
+        updateQuery(e.target.value);
       }}
     />
   );
