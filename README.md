@@ -6,6 +6,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `DEMO`
+
+Check demopage => [https://cranky-shirley-12a54e.netlify.app](https://cranky-shirley-12a54e.netlify.app)
+
 ### `npm start`
 
 Runs the app in the development mode.\

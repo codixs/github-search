@@ -1,11 +1,11 @@
 class UserItemModel {
   id: number;
-  avatar: string;
+  avatar_url: string;
   login: string;
 
-  constructor(id: number, avatar: string, login: string) {
+  constructor(id: number, avatar_url: string, login: string) {
     this.id = id;
-    this.avatar = avatar;
+    this.avatar_url = avatar_url;
     this.login = login;
   }
 }
